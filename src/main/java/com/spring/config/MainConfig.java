@@ -1,8 +1,13 @@
 package com.spring.config;
 
 
+import com.spring.bean.Color;
+import com.spring.bean.ColorFactory;
 import com.spring.bean.Person;
+import com.spring.bean.Red;
 import com.spring.condition.MacOSCondition;
+import com.spring.condition.MyImportBeanDefinitionRegistrar;
+import com.spring.condition.MyImportSelector;
 import com.spring.condition.WindowConditon;
 import com.spring.service.BookService;
 import org.springframework.context.annotation.*;
@@ -20,7 +25,10 @@ import org.springframework.stereotype.Service;
 //@ComponentScan(value = "com.spring",includeFilters = {
 //        @ComponentScan.Filter(type = FilterType.CUSTOM,classes = {MyTypeFilter.class})
 //},useDefaultFilters = false)
-@Conditional(value = {MacOSCondition.class})
+//@Conditional(value = {MacOSCondition.class})
+//@Import(Color.class)
+//@Import({Color.class, Red.class, MyImportSelector.class})
+@Import({Color.class, Red.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})
 public class MainConfig {
 
     //name 默认用方法名作为name
@@ -42,5 +50,10 @@ public class MainConfig {
     @Bean(value = "linux")
     public Person person02(){
         return new Person("linux",30);
+    }
+
+    @Bean
+    public ColorFactory colorFactory(){
+        return new ColorFactory();
     }
 }

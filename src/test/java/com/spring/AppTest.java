@@ -29,7 +29,18 @@ public class AppTest
     }
 
     @Test
-    public void test(){
+    public void testcolor(){
+        print();
+        Object colorFactory = ioc.getBean("colorFactory");
+        Object colorFactory2 = ioc.getBean("colorFactory");
+        System.out.println(colorFactory.getClass());
+        System.out.println(colorFactory == colorFactory2);
+        Object colorFactory3 = ioc.getBean("&colorFactory");
+        System.out.println(colorFactory3.getClass());
+    }
+
+    @Test
+    public void print(){
         String[] names = ioc.getBeanDefinitionNames();
         for (String name : names) {
             System.out.println(name);
