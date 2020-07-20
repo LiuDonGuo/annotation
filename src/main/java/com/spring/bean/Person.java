@@ -1,8 +1,15 @@
 package com.spring.bean;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public class Person {
+    @Value("jack")
     private String name;
+    @Value("#{20-18}")
     private Integer age;
+
+    @Value("${person.nickname}")
+    private String nickName;
 
     public Person(String name, Integer age) {
         this.name = name;
@@ -10,6 +17,14 @@ public class Person {
     }
 
     public Person() {
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getName() {
@@ -33,6 +48,7 @@ public class Person {
         return "Person{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", nickName='" + nickName + '\'' +
                 '}';
     }
 }
